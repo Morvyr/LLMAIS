@@ -1,6 +1,6 @@
-# Little Light Magic (LLM)
+# LLMAIS
 
-**All it takes is a Little Light Magic**
+**All it takes**
 
 ## Description
 
