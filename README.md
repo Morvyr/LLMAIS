@@ -1,10 +1,10 @@
-# Little Light Magic (LLM)
+# LLMAIS
 
-**All it takes is a Little Light Magic**
+**All it takes**
 
 ## Description
 
-Little Light Magic is an **Artificial Intelligence System (AIS)** - a complete workspace for working with local language models.
+LLMAIS is an **Artificial Intelligence System (AIS)** - a complete workspace for working with local language models.
 - **Run local AI models** - Host and manage models on your own hardware
 - **Chat interface with AI** - Conversational interface for querying models
 - **Manage multiple projects** - Switch between different workspaces seamlessly
