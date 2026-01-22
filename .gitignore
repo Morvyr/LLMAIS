@@ -8,7 +8,8 @@ venv/
 env/
 
 # Data
-data/
+data/*
+!data/README.md
 *.db
 *sqlite
 
@@ -20,7 +21,8 @@ data/
 .DS_Store
 Thumbs.db
 
-# Config secrets
-secrets/
+# Config 
+config/*
+!config/README.md
 
 
