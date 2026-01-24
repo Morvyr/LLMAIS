@@ -179,7 +179,7 @@ class Client:
 
     Handles model selection, API calls, and cost tracking.
     User must explicitly choose model on first run.
-    Choice is saved to config/settings.json for future sessions.
+    Choice is saved to config/api for future sessions.
     """
 
     def __init__(self, api_key=None):
@@ -203,13 +203,13 @@ class Client:
 
     def _load_model_from_config(self):
         """
-        Load saved model and max tokens from config/settings.json.
+        Load saved model and max tokens from config/api.
 
         Returns:
             tuple: (model, max_tokens) if found, (None,None) otherwise
         """
 
-        config_path = "config/settings.json"
+        config_path = "config/api/anthropic.json"
 
         # Check if config file exists
         if not os.path.exists(config_path):
@@ -220,7 +220,7 @@ class Client:
                 config = json.load(f)
 
             # Get model and max tokens from nested structure
-            model = config.get('llm', {}).get('model')
+            model = config.get('model')
             max_tokens = config.get('llm', {}).get('default_max_tokens')
             return model, max_tokens
         
@@ -230,13 +230,13 @@ class Client:
 
     def _save_model_to_config(self):
         """
-        Save current model to config/settings.json.
+        Save current model to config/api.
 
         Creates config directory if it doesn't exist.
         Preserves existing config settings.
         """
 
-        config_path = "config/settings.json"
+        config_path = "config/api/anthropic.json"
         config = {}
 
         # Load existing config or create new one
@@ -248,11 +248,8 @@ class Client:
                 config = {}
         
         # Update llm section
-        if 'llm' not in config:
-            config['llm'] = {}
-
-        config['llm']['model'] = self.model
-        config['llm']['default_max_tokens'] = self.default_max_tokens
+        config['model'] = self.model
+        config['default_max_tokens'] = self.default_max_tokens
 
         # Write back to file
         with open(config_path, 'w') as f:
@@ -375,7 +372,7 @@ class Client:
         self._save_model_to_config()
 
         print(f"\n[OK] Model selected: {self.model}")
-        print(f"[OK] Saved to config/settings.json")
+        print(f"[OK] Saved to config/api/anthropic.json")
         print("="*60)
 
     def set_model(self, model):
@@ -397,7 +394,7 @@ class Client:
         self.model = model
         self._save_model_to_config()
         print(f"\n[OK] Model changed to : {self.model}")
-        print(f"[OK] Saved to config/settings.json")
+        print(f"[OK] Saved to config/api/anthropic.json")
 
     def query(self, prompt, max_tokens=None, system_prompt=None):
         """
